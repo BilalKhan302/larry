@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World No 1 Bondu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #667eea;
+            }
+            to {
+                text-shadow: 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #764ba2;
+            }
+        }
+
+        .photo-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .quote-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .quote {
+            font-size: 1.4em;
+            font-style: italic;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInOut 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .crown {
+            font-size: 2em;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.2em;
+            }
+            
+            .photo, .photo-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .quote {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1 class="title">
+            <span class="crown">👑</span>
+            WORLD NO 1 BONDU
+            <span class="crown">👑</span>
+        </h1>
+        
+        <div class="photo-container">
+            <!-- Replace the src with your cousin's photo URL -->
+            <div class="photo-placeholder">
+          <img src="larry_pic.jpeg" alt="World No 1 Bondu" class="photo">
+            </div>
+            <!-- Uncomment and use this when you have the photo:
+            
+            -->
+        </div>
+        
+        <div class="quote-container">
+            <div class="quote" id="quote"></div>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            "Champions aren't made in the comfort zone! 💪",
+            "Every expert was once a beginner who never gave up! 🌟",
+            "Success is not just about winning, it's about inspiring others! 🏆",
+            "The difference between ordinary and extraordinary is practice! ⭐",
+            "Legends aren't born, they're made through dedication! 🔥",
+            "When you fall seven times, stand up eight! 💥",
+            "Dreams don't work unless you do! ✨",
+            "Be the reason someone believes in themselves today! 🌈",
+            "Your only limit is your mind! 🧠",
+            "Excellence is not a skill, it's an attitude! 🎯",
+            "The best way to predict the future is to create it! 🚀",
+            "Success is the sum of small efforts repeated daily! 📈",
+            "Believe in yourself and all that you are! 💎",
+            "Hard work beats talent when talent doesn't work hard! ⚡",
+            "You are stronger than you think! 💪",
+            "Make today so awesome that yesterday gets jealous! 🌟",
+            "The only impossible journey is the one you never begin! 🛤️",
+            "Turn your wounds into wisdom! 🦋",
+            "Life is tough, but so are you! 🔋",
+            "Your comeback is always stronger than your setback! 🌅"
+        ];
+
+        let currentQuoteIndex = 0;
+        const quoteElement = document.getElementById('quote');
+
+        function displayQuote() {
+            quoteElement.style.animation = 'none';
+            quoteElement.offsetHeight; // Trigger reflow
+            quoteElement.style.animation = 'fadeInOut 0.5s ease-in-out forwards';
+            quoteElement.textContent = quotes[currentQuoteIndex];
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        }
+
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize
+        createStars();
+        displayQuote();
+        
+        // Change quote every 4 seconds
+        setInterval(displayQuote, 4000);
+    </script>
+</body>
+</html>
